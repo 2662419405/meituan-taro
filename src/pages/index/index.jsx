@@ -1,7 +1,6 @@
 import Taro, { Component } from "@tarojs/taro";
-import { View, Button, Text } from "@tarojs/components";
+import { View, Text } from "@tarojs/components";
 import { observer, inject } from "@tarojs/mobx";
-import TabBar from "../../components/tabBar/index";
 
 import "./index.less";
 
@@ -9,7 +8,7 @@ import "./index.less";
 @observer
 class Index extends Component {
   config = {
-    navigationBarTitleText: "首页"
+    navigationBarTitleText: "饿了么首页"
   };
 
   componentWillMount() {}
@@ -49,7 +48,6 @@ class Index extends Component {
       <View className="index">
         <Text>{counter}</Text>
         <Text>测试服务器</Text>
-        <TabBar />
       </View>
     );
   }

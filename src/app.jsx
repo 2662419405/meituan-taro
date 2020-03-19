@@ -3,8 +3,7 @@ import { Provider } from "@tarojs/mobx";
 import Index from "./pages/index";
 import "taro-ui/dist/style/index.scss";
 import "./icon.scss";
-import counterStore from "./store/counter";
-import MyStore from "./store/book";
+import myStore from "./store/my";
 
 import "./app.less";
 
@@ -15,8 +14,7 @@ import "./app.less";
 // }
 
 const store = {
-  counterStore,
-  MyStore
+  myStore
 };
 
 class App extends Component {

@@ -48,6 +48,7 @@ class Index extends Component {
     return (
       <View className="index">
         <Text>{counter}</Text>
+        <Text>测试服务器</Text>
         <TabBar />
       </View>
     );

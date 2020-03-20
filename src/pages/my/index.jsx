@@ -1,7 +1,7 @@
-import Taro, { Component } from "@tarojs/taro";
+import Taro, { Component, getCurrentPages } from "@tarojs/taro";
 import { View, Text } from "@tarojs/components";
 import { observer, inject } from "@tarojs/mobx";
-import { AtNavBar, AtList, AtListItem, AtIcon, AtGrid } from "taro-ui";
+import { AtNavBar, AtList, AtListItem, AtAvatar, AtIcon } from "taro-ui";
 
 import "./index.less";
 
@@ -16,9 +16,20 @@ class Index extends Component {
 
   componentDidMount() {}
 
+  changeRouter = flag => {
+    if (flag) {
+      Taro.redirectTo({
+        url: "/pages/my/detail/index"
+      });
+    } else {
+      Taro.redirectTo({
+        url: "/pages/my/login/index"
+      });
+    }
+  };
+
   render() {
     const { myStore } = this.props;
-    console.log(myStore);
     return (
       <View>
         <AtNavBar
@@ -28,7 +39,36 @@ class Index extends Component {
           color="#fff"
           title="我的"
           leftIconType="chevron-left"
+          border={false}
         />
+        <View
+          className="profile-number"
+          onClick={() => this.changeRouter(myStore.name ? true : false)}
+        >
+          <View className="profile-link">
+            <AtAvatar
+              circle={true}
+              size="small"
+              image={
+                myStore.avatar
+                  ? myStore.avatar
+                  : "//elm.cangdu.org/img/default.jpg"
+              }
+            ></AtAvatar>
+            <View className="user-info">
+              <View className="user-info-name">
+                {myStore.name ? myStore.name : "请进行登录和注册"}
+              </View>
+              <View className="user-info-name">
+                <AtIcon value="iconfont icon-shouji" />
+                <Text className="icon-mobile-number">
+                  {myStore.phone ? myStore.phone : "暂无手机号绑定"}
+                </Text>
+              </View>
+            </View>
+            <View className="arrow"> > </View>
+          </View>
+        </View>
         <View className="info-data">
           <View className="info-data-link">
             <Text className="info-data-top">

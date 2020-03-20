@@ -1,5 +1,5 @@
 import Taro, { Component } from "@tarojs/taro";
-import { Provider } from "@tarojs/mobx";
+import { Provider, observer, inject } from "@tarojs/mobx";
 import Index from "./pages/index";
 import "taro-ui/dist/style/index.scss";
 import "./icon.scss";
@@ -66,14 +66,6 @@ class App extends Component {
       ]
     }
   };
-
-  componentDidMount() {}
-
-  componentDidShow() {}
-
-  componentDidHide() {}
-
-  componentDidCatchError() {}
 
   // 在 App 类中的 render() 函数没有实际作用
   // 请勿修改此函数

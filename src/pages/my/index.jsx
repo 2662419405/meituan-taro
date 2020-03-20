@@ -1,4 +1,4 @@
-import Taro, { Component, getCurrentPages } from "@tarojs/taro";
+import Taro, { Component } from "@tarojs/taro";
 import { View, Text } from "@tarojs/components";
 import { observer, inject } from "@tarojs/mobx";
 import { AtNavBar, AtList, AtListItem, AtAvatar, AtIcon } from "taro-ui";
@@ -14,7 +14,20 @@ class Index extends Component {
 
   state = {};
 
-  componentDidMount() {}
+  componentDidMount() {
+    if (this.$router.params.token) {
+      // 第一次登录获取token
+      this.props.myStore.pushDefaultData(this.$router.params);
+    } else {
+      // 存在token,获取用于信息
+      const biao = localStorage.getItem("biao");
+      const token = localStorage.getItem("token");
+      if (token && biao === "github") {
+        // 获取github的用于数据
+        this.props.myStore.getDefaultDataGithub();
+      }
+    }
+  }
 
   changeRouter = flag => {
     if (flag) {
@@ -43,26 +56,32 @@ class Index extends Component {
         />
         <View
           className="profile-number"
-          onClick={() => this.changeRouter(myStore.name ? true : false)}
+          onClick={() =>
+            this.changeRouter(myStore.userinfo.name ? true : false)
+          }
         >
           <View className="profile-link">
             <AtAvatar
               circle={true}
               size="small"
               image={
-                myStore.avatar
-                  ? myStore.avatar
+                myStore.userinfo.avatar
+                  ? myStore.userinfo.avatar
                   : "//elm.cangdu.org/img/default.jpg"
               }
             ></AtAvatar>
             <View className="user-info">
               <View className="user-info-name">
-                {myStore.name ? myStore.name : "请进行登录和注册"}
+                {myStore.userinfo.name
+                  ? myStore.userinfo.name
+                  : "请进行登录和注册"}
               </View>
               <View className="user-info-name">
                 <AtIcon value="iconfont icon-shouji" />
                 <Text className="icon-mobile-number">
-                  {myStore.phone ? myStore.phone : "暂无手机号绑定"}
+                  {myStore.userinfo.phone
+                    ? myStore.userinfo.phone
+                    : "暂无手机号绑定"}
                 </Text>
               </View>
             </View>

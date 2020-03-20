@@ -83,7 +83,9 @@ class Index extends Component {
         <Text className="threeLogin">第三方账号登录</Text>
         <View className="three_total">
           <View className="three_list">
-            <Image src="https://static.iiter.cn/github.ico" />
+            <a href="https://github.com/login/oauth/authorize?client_id=f4f827cfbebe51a858b8&redirect_uri=http://114.115.182.108:10010/server/oauth/github">
+              <Image src="https://static.iiter.cn/github.ico" />
+            </a>
           </View>
           <View className="three_list">
             <svg

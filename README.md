@@ -37,6 +37,10 @@ yarn build:tt
 
 ## 完成
 
+- [x] github第三方授权
+
+## 计划
+
 - [ ] Mobx的基本使用
 - [ ] Taro的使用
 - [ ] Taro-ui的使用

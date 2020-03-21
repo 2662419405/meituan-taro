@@ -20,10 +20,5 @@ module.exports = {
         }
       }
     }
-  },
-  h5: {
-    router: {
-      mode: "browser" // 或者是 'browser'
-    }
   }
 };
